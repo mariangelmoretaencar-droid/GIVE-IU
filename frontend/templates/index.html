@@ -1,0 +1,309 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>GIVE IU | Útiles que transforman vidas</title>
+
+    <meta name="description" content="GIVE IU conecta donantes con estudiantes y familias que necesitan útiles escolares.">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+
+<body>
+
+    <!-- ENCABEZADO -->
+    <header class="header">
+        <div class="container navbar">
+
+           <a href="/" class="logo">
+    <img
+        src="{{ url_for('static', filename='img/Give_IU_logo.png') }}"
+        alt="Logo GIVE IU"
+        class="logo-img"
+    >
+    
+</a>
+
+            <nav class="nav-links">
+                <a href="#inicio">Inicio</a>
+                <a href="#nosotros">Nosotros</a>
+                <a href="#funciona">Cómo funciona</a>
+                <a href="#impacto">Nuestro impacto</a>
+            </nav>
+
+            <a href="#donar" class="nav-button">
+                Donar ahora
+            </a>
+
+        </div>
+    </header>
+
+
+    <!-- PRESENTACIÓN PRINCIPAL -->
+    <main>
+
+        <section class="hero" id="inicio">
+
+            <div class="container hero-grid">
+
+                <div class="hero-content">
+
+                    <span class="tagline">
+                        SOLIDARIDAD · EDUCACIÓN · SOSTENIBILIDAD
+                    </span>
+
+                    <h1>
+                        Cada útil puede
+                        <span>transformar una vida.</span>
+                    </h1>
+
+                    <p>
+                        Conectamos personas que desean donar útiles escolares
+                        con estudiantes y familias que necesitan una
+                        oportunidad para continuar aprendiendo.
+                    </p>
+
+                    <div class="hero-buttons">
+                        <a href="donaciones.html" class="btn btn-primary">
+                            Quiero donar
+                        </a>
+
+                        <a href="#solicitar" class="btn btn-secondary">
+                            Necesito útiles
+                        </a>
+                    </div>
+
+                    <div class="hero-note">
+                        Cada aporte cuenta. Cada oportunidad transforma.
+                    </div>
+
+                </div>
+
+                
+<div class="hero-visual">
+    <div class="visual-card">
+
+        <img
+            src="{{ url_for('static', filename='img/donacion.jpg') }}"
+            alt="Donación de útiles escolares"
+            class="hero-image"
+        >
+
+        <div class="visual-text">
+            <h2>Compartir también es educar.</h2>
+
+            <p>
+                Un útil que ya no necesitas puede convertirse
+                en una nueva oportunidad para alguien más.
+            </p>
+        </div>
+
+    </div>
+</div>
+
+
+            </div>
+
+        </section>
+
+
+        <!-- NOSOTROS -->
+        <section class="section" id="nosotros">
+
+            <div class="container">
+
+                <div class="section-heading">
+                    <span class="section-tag">QUIÉNES SOMOS</span>
+
+                    <h2>Una iniciativa con propósito.</h2>
+
+                    <p>
+                        GIVE IU busca aprovechar los útiles escolares
+                        disponibles y facilitar que lleguen a quienes
+                        realmente los necesitan.
+                    </p>
+                </div>
+
+                <div class="values-grid">
+
+                   <article class="value-card">
+    <div class="value-icon">
+        <img
+            src="{{ url_for('static', filename='img/solidaridad.png') }}"
+            alt="Donación de útiles escolares"
+        >
+    </div>
+
+    <h3>Solidaridad</h3>
+
+    <p>
+        Promovemos la colaboración entre personas
+        y comunidades.
+    </p>
+</article>
+                    <article class="value-card">
+                        <div class="value-icon">
+                             <img
+                             src="{{ url_for('static', filename='img/educacion.png') }}"
+                             alt="Donación de útiles escolares"
+                              >
+
+                        </div>
+                        <h3>Educación</h3>
+                        <p>
+                            Facilitamos el acceso a materiales
+                            que apoyan el aprendizaje.
+                        </p>
+                    </article>
+
+                    <article class="value-card">
+                        <div class="value-icon">
+                               <img
+                             src="{{ url_for('static', filename='img/sostenibilidad.jpg') }}"
+                             alt="Donación de útiles escolares"
+                              >
+                        </div>
+                        <h3>Sostenibilidad</h3>
+                        <p>
+                            Damos una segunda oportunidad a los
+                            útiles escolares aprovechables.
+                        </p>
+                    </article>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- CÓMO FUNCIONA -->
+        <section class="section section-light" id="funciona">
+
+            <div class="container">
+
+                <div class="section-heading">
+                    <span class="section-tag">NUESTRO PROCESO</span>
+
+                    <h2>Ayudar es más sencillo de lo que imaginas.</h2>
+
+                    <p>
+                        Cada donación pasa por un proceso organizado
+                        para garantizar una entrega responsable.
+                    </p>
+                </div>
+
+                <div class="steps-grid">
+
+                    <article class="step-card">
+                        <span class="step-number">01</span>
+                        <h3>Recibimos</h3>
+                        <p>
+                            Las personas entregan sus útiles escolares
+                            para contribuir con la iniciativa.
+                        </p>
+                    </article>
+
+                    <article class="step-card">
+                        <span class="step-number">02</span>
+                        <h3>Revisamos</h3>
+                        <p>
+                            Inspeccionamos y clasificamos los materiales
+                            según su estado.
+                        </p>
+                    </article>
+
+                    <article class="step-card">
+                        <span class="step-number">03</span>
+                        <h3>Organizamos</h3>
+                        <p>
+                            Registramos los útiles aprobados y los
+                            ponemos a disposición.
+                        </p>
+                    </article>
+
+                    <article class="step-card">
+                        <span class="step-number">04</span>
+                        <h3>Entregamos</h3>
+                        <p>
+                            Gestionamos las solicitudes y facilitamos
+                            la entrega de los materiales.
+                        </p>
+                    </article>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- LLAMADOS A LA ACCIÓN -->
+        <section class="section action-section" id="donar">
+
+            <div class="container action-grid">
+
+                <div>
+                    <span class="section-tag">SÉ PARTE DEL CAMBIO</span>
+                    <h2>Un pequeño aporte puede abrir grandes oportunidades.</h2>
+                    <p>
+                        Tu colaboración puede ayudar a que más estudiantes
+                        cuenten con los materiales necesarios para aprender.
+                    </p>
+                </div>
+
+                <div class="action-buttons">
+                    <a href="#contacto" class="btn btn-white">
+                        Quiero donar
+                    </a>
+
+                    <a href="#contacto" class="btn btn-outline">
+                        Necesito útiles
+                    </a>
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- PIE DE PÁGINA -->
+    <footer class="footer" id="contacto">
+
+        <div class="container footer-content">
+
+            <div>
+                <a href="/" class="footer-logo">
+                    GIVE <span>IU</span>
+                </a>
+
+                <p>Útiles que transforman vidas.</p>
+            </div>
+
+            <div>
+                <h3>GIVE IU</h3>
+                <p>Solidaridad, educación y sostenibilidad.</p>
+            </div>
+
+            <div>
+                <h3>Contacto</h3>
+                <p>Próximamente encontrarás aquí nuestros canales oficiales.</p>
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+            © 2026 GIVE IU. Todos los derechos reservados.
+        </div>
+
+    </footer>
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+
+</body>
+</html>
