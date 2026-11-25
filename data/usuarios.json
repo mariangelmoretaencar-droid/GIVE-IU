@@ -1,1 +1,9 @@
-[]
+[
+    {
+        "id": "2d50f2b9-2e7d-4cba-9113-9dee4a239801",
+        "usuario": "admin",
+        "password_hash": "scrypt:32768:8:1$83Jx7I75o4VDyDGR$7e65fe92dbcd3d3dc72f0a6b323971137c9cbd6da0ff4529efc16cc7ef6f57ba08a85bee92d4b07de6dbcf1f2a661442db00ee36a6dca46230b787d7354dfdb9",
+        "rol": "admin",
+        "creado": "2026-11-24T15:35:51-04:00"
+    }
+]

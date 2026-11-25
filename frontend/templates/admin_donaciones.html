@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administrar donaciones | GIVE IU</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <header class="header">
+        <div class="container admin-navbar">
+            <a href="/" class="footer-logo">GIVE <span>IU</span></a>
+            <div class="admin-session">
+                <span>Sesión: {{ session.get('admin_usuario') }}</span>
+                <a class="admin-logout" href="{{ url_for('admin_usuarios') }}">Administrar usuarios</a>
+                <form method="post" action="{{ url_for('admin_salir') }}">
+                    <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+                    <button type="submit" class="admin-logout">Cerrar sesión</button>
+                </form>
+            </div>
+        </div>
+    </header>
+
+    <main class="admin-page container">
+        <div class="admin-heading">
+            <div>
+                <p class="section-tag">PANEL ADMINISTRATIVO</p>
+                <h1>Gestión de donaciones</h1>
+                <p>Consulta, busca y da seguimiento a las donaciones registradas. Los materiales deben inspeccionarse antes de incorporarse al inventario.</p>
+            </div>
+            <a href="/donaciones" class="btn btn-secondary">Registrar donación</a>
+        </div>
+
+        {% for categoria, mensaje in get_flashed_messages(with_categories=true) %}
+        <div class="admin-alert {{ categoria }}">{{ mensaje }}</div>
+        {% endfor %}
+
+        <section class="admin-stats" aria-label="Resumen de donaciones">
+            <article><span>Total</span><strong>{{ donaciones|length }}</strong></article>
+            <article><span>Pendientes de revisión</span><strong>{{ resumen.get('pendiente_inspeccion', 0) }}</strong></article>
+            <article><span>Recibidas</span><strong>{{ resumen.get('recibida', 0) }}</strong></article>
+            <article><span>Rechazadas</span><strong>{{ resumen.get('rechazada', 0) }}</strong></article>
+        </section>
+
+        <section class="donation-filters" aria-label="Filtros de donaciones">
+            <div class="admin-list-tools">
+                <label for="donation-search">Buscar donación</label>
+                <input id="donation-search" type="search" placeholder="Código, donante o material">
+            </div>
+            <div class="admin-list-tools">
+                <label for="donation-status-filter">Estado</label>
+                <select id="donation-status-filter">
+                    <option value="">Todos los estados</option>
+                    {% for estado, etiqueta in etiquetas_estado.items() %}
+                    <option value="{{ estado }}">{{ etiqueta }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="admin-list-tools">
+                <label for="donation-category-filter">Categoría</label>
+                <select id="donation-category-filter">
+                    <option value="">Todas las categorías</option>
+                    {% for categoria in categorias_presentes %}
+                    <option value="{{ categoria }}">{{ categorias.get(categoria, categoria|capitalize) }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="admin-list-tools">
+                <label for="donation-date-from">Desde</label>
+                <input id="donation-date-from" type="date">
+            </div>
+            <div class="admin-list-tools">
+                <label for="donation-date-to">Hasta</label>
+                <input id="donation-date-to" type="date">
+            </div>
+            <button type="button" id="clear-donation-filters" class="btn btn-secondary">Limpiar filtros</button>
+        </section>
+        <p id="donation-filter-count" class="filter-count" aria-live="polite"></p>
+
+        {% if donaciones %}
+        <section class="admin-donation-list" aria-label="Lista de donaciones">
+            {% for donacion in donaciones %}
+            <article class="admin-donation-card"
+                id="donacion-{{ donacion.get('id') }}"
+                data-search="{{ donacion.get('id', '') }} {{ donacion.get('donante', '') }} {{ donacion.get('telefono', '') }} {{ donacion.get('correo', '') }} {% for material in donacion.get('materiales', []) %}{{ material.get('material', '') }} {% endfor %}"
+                data-status="{{ donacion.get('estado', 'pendiente_inspeccion') }}"
+                data-date="{{ donacion.get('fecha', '')[:10] }}"
+                data-categories="{% for material in donacion.get('materiales', []) %}{{ material.get('categoria', '') }} {% endfor %}">
+                <div class="admin-card-heading">
+                    <div>
+                        <span class="admin-reference">Código: {{ donacion.get('id', 'Sin código') }}</span>
+                        <h2>{{ donacion.get('donante', 'Donante sin nombre') }}</h2>
+                        <p>Registrada: {{ donacion.get('fecha', 'Fecha no disponible') }}</p>
+                    </div>
+                    <span class="admin-status">{{ etiquetas_estado.get(donacion.get('estado', 'pendiente_inspeccion'), donacion.get('estado', 'Pendiente')) }}</span>
+                </div>
+
+                <div class="admin-donor-contact">
+                    <span>Teléfono: {{ donacion.get('telefono', 'No indicado') }}</span>
+                    <span>Correo: {{ donacion.get('correo') or 'No indicado' }}</span>
+                </div>
+
+                <h3>Materiales declarados</h3>
+                <ul class="admin-material-list">
+                    {% for material in donacion.get('materiales', []) %}
+                    <li>
+                        <strong>{{ material.get('material', 'Material') }}</strong>
+                        <span>{{ material.get('cantidad', 0) }} unidades</span>
+                        <span>{{ categorias.get(material.get('categoria', ''), material.get('categoria', 'Sin categoría')|capitalize) }}</span>
+                        <span>Condición declarada: {{ material.get('condicion', 'No indicada')|replace('_', ' ')|capitalize }}</span>
+                    </li>
+                    {% endfor %}
+                </ul>
+
+                {% if donacion.get('observaciones') %}
+                <p class="admin-observations"><strong>Observaciones del donante:</strong> {{ donacion.get('observaciones') }}</p>
+                {% endif %}
+
+                <details class="admin-detail-section" {% if donacion.get('id') == donacion_destacada %}open{% endif %}>
+                    <summary>Observaciones internas e historial</summary>
+                    <div class="admin-internal-note">
+                        <form method="post" action="{{ url_for('admin_guardar_observaciones_donacion', donacion_id=donacion.get('id')) }}">
+                            <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+                            <label for="nota-{{ loop.index }}">Observación administrativa (no visible para el donante)</label>
+                            <textarea id="nota-{{ loop.index }}" name="observacion_admin" rows="3" maxlength="1500" placeholder="Añade información interna sobre el seguimiento...">{{ donacion.get('observacion_admin', '') }}</textarea>
+                            {% if donacion.get('observacion_admin_actualizada') %}
+                            <small>Última actualización: {{ donacion.get('observacion_admin_actualizada') }} · {{ donacion.get('observacion_admin_usuario', 'Administrador') }}</small>
+                            {% endif %}
+                            <button type="submit" class="btn btn-secondary">Guardar observación</button>
+                        </form>
+                    </div>
+                    <div class="admin-history">
+                        <h3>Historial de estados</h3>
+                        {% set historial = donacion.get('historial_estados', []) %}
+                        {% if historial %}
+                        <ol>
+                            {% for evento in historial|reverse %}
+                            <li>
+                                <strong>{{ etiquetas_estado.get(evento.get('estado_nuevo'), evento.get('estado_nuevo', 'Estado')) }}</strong>
+                                <span>{{ evento.get('fecha', 'Fecha no disponible') }}</span>
+                                <small>Responsable: {{ evento.get('usuario', 'No registrado') }}</small>
+                            </li>
+                            {% endfor %}
+                        </ol>
+                        {% else %}
+                        <p class="muted-note">Esta donación es anterior al registro del historial. Los próximos cambios quedarán documentados.</p>
+                        {% endif %}
+                    </div>
+                </details>
+
+                {% set opciones = transiciones.get(donacion.get('estado', 'pendiente_inspeccion'), []) %}
+                {% if opciones %}
+                <form class="admin-status-form" method="post" action="{{ url_for('admin_cambiar_estado', donacion_id=donacion.get('id')) }}">
+                    <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+                    <label for="estado-{{ loop.index }}">Cambiar estado</label>
+                    <select id="estado-{{ loop.index }}" name="estado" required>
+                        {% for estado in opciones %}
+                        <option value="{{ estado }}">{{ etiquetas_estado[estado] }}</option>
+                        {% endfor %}
+                    </select>
+                    <button type="submit" class="btn btn-primary">Guardar estado</button>
+                </form>
+                {% elif donacion.get('estado') == 'en_inspeccion' %}
+                <p class="admin-next-step">La aprobación de materiales se realizará desde el módulo de inspección de la Fase 4.</p>
+                {% endif %}
+            </article>
+            {% endfor %}
+        </section>
+        <p id="no-search-results" class="admin-empty" hidden>No hay donaciones que coincidan con los filtros seleccionados.</p>
+        {% else %}
+        <section class="admin-empty">
+            <h2>Aún no hay donaciones</h2>
+            <p>Cuando alguien registre una donación, aparecerá aquí para su revisión.</p>
+        </section>
+        {% endif %}
+    </main>
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>

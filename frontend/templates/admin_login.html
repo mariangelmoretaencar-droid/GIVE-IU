@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acceso administrativo | GIVE IU</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body class="admin-auth-page">
+    <main class="admin-auth-card">
+        <a href="/" class="footer-logo">GIVE <span>IU</span></a>
+        <p class="section-tag">ÁREA ADMINISTRATIVA</p>
+        <h1>Iniciar sesión</h1>
+        <p>Ingresa con la cuenta administradora para revisar las donaciones.</p>
+
+        {% for categoria, mensaje in get_flashed_messages(with_categories=true) %}
+        <div class="admin-alert {{ categoria }}">{{ mensaje }}</div>
+        {% endfor %}
+
+        <form method="post" class="admin-auth-form">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+            <label for="usuario">Usuario</label>
+            <input id="usuario" name="usuario" type="text" maxlength="50" autocomplete="username" required>
+            <label for="contrasena">Contraseña</label>
+            <input id="contrasena" name="contrasena" type="password" autocomplete="current-password" required>
+            <button class="btn btn-primary" type="submit">Ingresar</button>
+        </form>
+        <a class="admin-back-link" href="/">Volver al sitio</a>
+    </main>
+</body>
+</html>

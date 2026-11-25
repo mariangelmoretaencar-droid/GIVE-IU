@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Configurar acceso administrativo | GIVE IU</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body class="admin-auth-page">
+    <main class="admin-auth-card">
+        <a href="/" class="footer-logo">GIVE <span>IU</span></a>
+        <p class="section-tag">CONFIGURACIÓN INICIAL</p>
+        <h1>Crea la cuenta administradora</h1>
+        <p>Esta configuración aparece una sola vez. Elige una contraseña privada de al menos 12 caracteres.</p>
+
+        {% for categoria, mensaje in get_flashed_messages(with_categories=true) %}
+        <div class="admin-alert {{ categoria }}">{{ mensaje }}</div>
+        {% endfor %}
+
+        <form method="post" class="admin-auth-form">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+            <label for="usuario">Usuario</label>
+            <input id="usuario" name="usuario" type="text" minlength="4" maxlength="50" autocomplete="username" required>
+            <label for="contrasena">Contraseña</label>
+            <input id="contrasena" name="contrasena" type="password" minlength="12" autocomplete="new-password" required>
+            <label for="confirmar">Repite la contraseña</label>
+            <input id="confirmar" name="confirmar" type="password" minlength="12" autocomplete="new-password" required>
+            <button class="btn btn-primary" type="submit">Crear acceso</button>
+        </form>
+        <a class="admin-back-link" href="/">Volver al sitio</a>
+    </main>
+</body>
+</html>

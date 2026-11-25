@@ -1,1 +1,65 @@
-[]
+[
+    {
+        "id": "dee4c1a9-4d57-4180-ab7a-b809c6fd1ad7",
+        "fecha": "2026-11-24T12:55:54-04:00",
+        "donante": "Mariangel",
+        "telefono": "(809) 123-1234",
+        "correo": "Mariangel@gmail.com",
+        "materiales": [
+            {
+                "material": "Mochila",
+                "categoria": "mochilas",
+                "cantidad": 2,
+                "condicion": "regular"
+            },
+            {
+                "material": "Cuadernos",
+                "categoria": "papeleria",
+                "cantidad": 20,
+                "condicion": "nuevo"
+            }
+        ],
+        "observaciones": "La mochila es para una niña pequeña y los cuadernos son mixtos",
+        "estado": "recepcion_coordinada",
+        "actualizado": "2026-11-24T15:37:02-04:00"
+    },
+    {
+        "id": "b21534ea-b59d-41fc-9dcb-4977c7d349e4",
+        "fecha": "2026-11-24T13:03:38-04:00",
+        "donante": "Glismeyli de los santos Mendez",
+        "telefono": "(809) 000-0000",
+        "correo": "glismeyli@gmail.com",
+        "materiales": [
+            {
+                "material": "Mochila",
+                "categoria": "mochilas",
+                "cantidad": 1,
+                "condicion": "buen_estado"
+            }
+        ],
+        "observaciones": "La mochila tiene decoraciones lilas adecuadas para una niña",
+        "estado": "recepcion_coordinada",
+        "actualizado": "2026-11-24T15:38:20-04:00"
+    },
+    {
+        "id": "a4a8dd2f-fcf3-492d-a785-4ad7f13c758e",
+        "fecha": "2026-11-24T13:05:37-04:00",
+        "donante": "Michael Cano",
+        "telefono": "(809) 111-1111",
+        "correo": "Michael@Gmail.com",
+        "materiales": [
+            {
+                "material": "Paquete de hojas en blanco",
+                "categoria": "papeleria",
+                "cantidad": 1,
+                "condicion": "nuevo"
+            }
+        ],
+        "observaciones": "",
+        "estado": "recibida",
+        "actualizado": "2026-11-24T15:38:02-04:00",
+        "observacion_admin": "perra",
+        "observacion_admin_actualizada": "2026-11-25T16:35:36+01:00",
+        "observacion_admin_usuario": "admin"
+    }
+]

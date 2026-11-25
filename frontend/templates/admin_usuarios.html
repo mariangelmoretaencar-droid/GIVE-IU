@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administrar usuarios | GIVE IU</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <header class="header">
+        <div class="container admin-navbar">
+            <a href="/" class="footer-logo">GIVE <span>IU</span></a>
+            <div class="admin-session">
+                <span>Sesión: {{ usuario_sesion }}</span>
+                <a class="admin-logout" href="{{ url_for('admin_donaciones') }}">Volver a donaciones</a>
+                <form method="post" action="{{ url_for('admin_salir') }}">
+                    <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+                    <button type="submit" class="admin-logout">Cerrar sesión</button>
+                </form>
+            </div>
+        </div>
+    </header>
+
+    <main class="admin-page container">
+        <div class="admin-heading">
+            <div>
+                <p class="section-tag">SEGURIDAD Y ACCESOS</p>
+                <h1>Administración de usuarios</h1>
+                <p>Crea cuentas administrativas y activa o desactiva accesos existentes.</p>
+            </div>
+        </div>
+
+        {% for categoria, mensaje in get_flashed_messages(with_categories=true) %}
+        <div class="admin-alert {{ categoria }}">{{ mensaje }}</div>
+        {% endfor %}
+
+        <section class="admin-donation-card">
+            <h2>Crear cuenta administrativa</h2>
+            <form class="admin-auth-form" method="post">
+                <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+                <label for="usuario">Nombre de usuario</label>
+                <input id="usuario" name="usuario" type="text" minlength="4" maxlength="50" autocomplete="off" required>
+                <label for="contrasena">Contraseña (mínimo 12 caracteres)</label>
+                <input id="contrasena" name="contrasena" type="password" minlength="12" autocomplete="new-password" required>
+                <label for="confirmar">Confirmar contraseña</label>
+                <input id="confirmar" name="confirmar" type="password" minlength="12" autocomplete="new-password" required>
+                <button class="btn btn-primary" type="submit">Crear usuario</button>
+            </form>
+        </section>
+
+        <section class="admin-donation-list" aria-label="Cuentas administrativas">
+            <div class="admin-card-heading">
+                <h2>Cuentas registradas</h2>
+                <span class="admin-status">{{ total_usuarios }} {{ 'cuenta' if total_usuarios == 1 else 'cuentas' }}</span>
+            </div>
+            {% for usuario in usuarios %}
+            <article class="admin-donation-card">
+                <div class="admin-card-heading">
+                    <div>
+                        <h2>{{ usuario.get('usuario', 'Usuario') }}</h2>
+                        <p>Creado: {{ usuario.get('creado', 'Fecha no disponible') }}</p>
+                    </div>
+                    <span class="admin-status">{{ 'Activo' if usuario.get('activo', true) else 'Inactivo' }}</span>
+                </div>
+                {% if usuario.get('usuario') == usuario_sesion %}
+                    <p class="admin-next-step">Esta es tu cuenta actual. No puedes desactivarla mientras tengas la sesión abierta.</p>
+                {% else %}
+                    <form method="post" action="{{ url_for('admin_usuario_estado', usuario_id=usuario.get('id')) }}">
+                        <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+                        <button class="btn btn-secondary" type="submit">{{ 'Desactivar cuenta' if usuario.get('activo', true) else 'Activar cuenta' }}</button>
+                    </form>
+                {% endif %}
+            </article>
+            {% else %}
+            <section class="admin-empty"><h2>No hay cuentas administrativas para mostrar</h2><p>Cuando crees una cuenta con rol de administrador, aparecerá aquí.</p></section>
+            {% endfor %}
+        </section>
+    </main>
+</body>
+</html>

@@ -866,3 +866,458 @@ a {
 .btn-add-material:hover {
     background: #D8EFE5;
 }
+
+.form-feedback {
+    margin: 0 0 20px;
+    padding: 14px 16px;
+    border-radius: 8px;
+    line-height: 1.5;
+}
+
+.form-feedback.is-success {
+    color: #116149;
+    background: #EAF6F1;
+    border: 1px solid #B9DFCE;
+}
+
+.form-feedback.is-error {
+    color: #8A2925;
+    background: #FFF0EF;
+    border: 1px solid #EBC4C1;
+}
+
+.admin-auth-page {
+    min-height: 100vh;
+    display: grid;
+    place-items: center;
+    padding: 28px 16px;
+    background: var(--fondo);
+}
+
+.admin-auth-card {
+    width: min(460px, 100%);
+    padding: 36px;
+    background: var(--blanco);
+    border: 1px solid var(--borde);
+    border-radius: 16px;
+    box-shadow: var(--sombra);
+}
+
+.admin-auth-card > .footer-logo {
+    display: inline-block;
+    margin-bottom: 22px;
+}
+
+.admin-auth-card h1 {
+    margin: 7px 0 8px;
+    line-height: 1.2;
+    font-size: 28px;
+}
+
+.admin-auth-card > p:not(.section-tag) {
+    margin-bottom: 22px;
+    color: var(--texto-suave);
+}
+
+.admin-auth-form {
+    display: grid;
+    gap: 10px;
+}
+
+.admin-auth-form label,
+.admin-list-tools label,
+.admin-status-form label {
+    font-weight: 700;
+}
+
+.admin-auth-form input,
+.admin-list-tools input,
+.admin-status-form select {
+    min-height: 44px;
+    padding: 10px 12px;
+    border: 1px solid #CCD8D2;
+    border-radius: 7px;
+    font: inherit;
+}
+
+.admin-auth-form button {
+    margin-top: 10px;
+    border: 0;
+    cursor: pointer;
+}
+
+.admin-back-link {
+    display: inline-block;
+    margin-top: 20px;
+    color: var(--azul);
+}
+
+.admin-alert {
+    margin: 16px 0;
+    padding: 12px 14px;
+    border-radius: 8px;
+}
+
+.admin-alert.error {
+    color: #8A2925;
+    background: #FFF0EF;
+    border: 1px solid #EBC4C1;
+}
+
+.admin-alert.success {
+    color: #116149;
+    background: #EAF6F1;
+    border: 1px solid #B9DFCE;
+}
+
+.admin-navbar,
+.admin-session,
+.admin-heading,
+.admin-card-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+}
+
+.admin-navbar {
+    min-height: 76px;
+}
+
+.admin-session form {
+    display: inline;
+}
+
+.admin-logout {
+    padding: 8px 12px;
+    border: 1px solid var(--borde);
+    border-radius: 7px;
+    background: white;
+    color: var(--texto);
+    cursor: pointer;
+}
+
+.admin-page {
+    padding-top: 42px;
+    padding-bottom: 70px;
+}
+
+.admin-heading {
+    margin-bottom: 26px;
+}
+
+.admin-heading h1 {
+    margin: 5px 0;
+}
+
+.admin-heading p:not(.section-tag) {
+    color: var(--texto-suave);
+}
+
+.admin-stats {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 14px;
+    margin: 24px 0;
+}
+
+.admin-stats article {
+    display: grid;
+    gap: 3px;
+    padding: 18px;
+    background: #F8FAF8;
+    border: 1px solid var(--borde);
+    border-radius: 10px;
+}
+
+.admin-stats span {
+    color: var(--texto-suave);
+    font-size: 14px;
+}
+
+.admin-stats strong {
+    font-size: 27px;
+}
+
+.admin-list-tools {
+    display: grid;
+    gap: 7px;
+    max-width: 460px;
+    margin: 28px 0 18px;
+}
+
+.admin-donation-list {
+    display: grid;
+    gap: 16px;
+}
+
+.admin-donation-card {
+    padding: 22px;
+    border: 1px solid var(--borde);
+    border-radius: 12px;
+    background: white;
+    box-shadow: 0 5px 18px rgba(35, 55, 70, 0.05);
+}
+
+.admin-reference {
+    color: var(--azul);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: .04em;
+}
+
+.admin-card-heading h2 {
+    margin-top: 2px;
+    font-size: 20px;
+}
+
+.admin-card-heading p,
+.admin-donor-contact,
+.admin-observations {
+    color: var(--texto-suave);
+    font-size: 14px;
+}
+
+.admin-status {
+    flex: 0 0 auto;
+    padding: 6px 11px;
+    border-radius: 999px;
+    color: #624B0B;
+    background: #FFF5D7;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.admin-donor-contact {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 20px;
+    padding: 14px 0;
+    margin-top: 14px;
+    border-top: 1px solid var(--borde);
+}
+
+.admin-donation-card h3 {
+    margin: 5px 0 8px;
+    font-size: 15px;
+}
+
+.admin-material-list {
+    display: grid;
+    gap: 8px;
+    padding-left: 20px;
+}
+
+.admin-material-list li {
+    padding-left: 2px;
+}
+
+.admin-material-list li span {
+    margin-left: 8px;
+    color: var(--texto-suave);
+    font-size: 13px;
+}
+
+.admin-observations {
+    margin-top: 14px;
+}
+
+.admin-status-form {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 9px;
+    margin-top: 18px;
+    padding-top: 16px;
+    border-top: 1px solid var(--borde);
+}
+
+.admin-status-form label {
+    margin-right: 4px;
+}
+
+.admin-next-step {
+    margin-top: 16px;
+    padding: 12px 14px;
+    border-radius: 8px;
+    background: #F2F6FA;
+    color: var(--azul-oscuro);
+}
+
+.admin-empty {
+    padding: 32px;
+    text-align: center;
+    background: #F8FAF8;
+    border: 1px dashed #C7D5CE;
+    border-radius: 12px;
+    color: var(--texto-suave);
+}
+
+.admin-empty h2 {
+    margin-bottom: 6px;
+    color: var(--texto);
+}
+
+@media (max-width: 700px) {
+    .admin-auth-card {
+        padding: 26px 20px;
+    }
+
+    .admin-navbar,
+    .admin-heading {
+        align-items: flex-start;
+        flex-direction: column;
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+
+    .admin-session {
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .admin-stats {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .admin-card-heading {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .admin-material-list li span {
+        display: block;
+        margin-left: 0;
+    }
+
+    .admin-status-form {
+        align-items: stretch;
+        flex-direction: column;
+    }
+}
+
+
+/* Fase 3: filtros y seguimiento de donaciones */
+.donation-filters {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+    align-items: end;
+    gap: 12px;
+    margin: 26px 0 8px;
+    padding: 18px;
+    border: 1px solid var(--borde);
+    border-radius: 12px;
+    background: #F8FAF8;
+}
+
+.donation-filters .admin-list-tools {
+    max-width: none;
+    margin: 0;
+}
+
+.donation-filters select,
+.donation-filters input {
+    width: 100%;
+    min-height: 44px;
+    padding: 10px 12px;
+    border: 1px solid #CCD8D2;
+    border-radius: 7px;
+    background: white;
+    font: inherit;
+}
+
+.donation-filters > button {
+    min-height: 44px;
+    white-space: nowrap;
+}
+
+.filter-count,
+.muted-note {
+    color: var(--texto-suave);
+    font-size: 13px;
+    margin: 8px 0 16px;
+}
+
+.admin-reference {
+    overflow-wrap: anywhere;
+}
+
+.admin-detail-section {
+    margin-top: 18px;
+    padding-top: 14px;
+    border-top: 1px solid var(--borde);
+}
+
+.admin-detail-section summary {
+    color: var(--azul);
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.admin-internal-note {
+    margin-top: 14px;
+}
+
+.admin-internal-note form {
+    display: grid;
+    gap: 9px;
+    max-width: 720px;
+}
+
+.admin-internal-note label {
+    font-weight: 700;
+    font-size: 14px;
+}
+
+.admin-internal-note textarea {
+    width: 100%;
+    min-height: 90px;
+    padding: 11px 12px;
+    border: 1px solid #CCD8D2;
+    border-radius: 7px;
+    font: inherit;
+    resize: vertical;
+}
+
+.admin-internal-note small {
+    color: var(--texto-suave);
+}
+
+.admin-history {
+    margin-top: 20px;
+}
+
+.admin-history ol {
+    display: grid;
+    gap: 10px;
+    margin: 12px 0 0;
+    padding-left: 22px;
+}
+
+.admin-history li {
+    padding-left: 4px;
+}
+
+.admin-history li strong,
+.admin-history li span,
+.admin-history li small {
+    display: block;
+}
+
+.admin-history li span,
+.admin-history li small {
+    color: var(--texto-suave);
+    font-size: 13px;
+    margin-top: 3px;
+}
+
+@media (max-width: 700px) {
+    .donation-filters {
+        grid-template-columns: 1fr;
+        padding: 14px;
+    }
+
+    .donation-filters > button {
+        width: 100%;
+    }
+}
